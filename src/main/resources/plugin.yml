@@ -1,0 +1,12 @@
+name: IXBOBPlotPlugin
+version: 1.0.0
+api-version: 1.12
+author: IXBOB
+description: This plugin does so much stuff it can't be contained!
+website: www.ixbob.com
+prefix: IXBOBPlotPlugin #控制台日志所使用的名称
+main: com.ixbob.plotplugin.Main
+commands:
+  plot:
+    description: get or teleport to your own plot.
+    usage: /<command>

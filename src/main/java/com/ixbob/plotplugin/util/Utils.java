@@ -1,5 +1,6 @@
 package com.ixbob.plotplugin.util;
 
+import com.ixbob.plotplugin.Main;
 import com.ixbob.plotplugin.MongoDB;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
@@ -7,6 +8,8 @@ import com.mongodb.Mongo;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.Locale;
 import java.util.UUID;
@@ -26,12 +29,28 @@ public class Utils {
         dbPlot.insert(obj);
     }
 
+    public static void playerJoinInitData(Player player) {
+        UUID uuid = player.getUniqueId();
+        player.setMetadata("registered", new FixedMetadataValue(Main.plugin, false));
+        if (dbPlot.isFindByUUIDExist(uuid)) {
+            playerInitEntityData(player);
+        }
+    }
+
+    public static void playerInitEntityData(Player player) {
+        UUID uuid = player.getUniqueId();
+        DBObject obj = dbPlot.findByOwnerUUID(uuid);
+        player.setMetadata("X_from", new FixedMetadataValue(Main.plugin, obj.get("X_from")));
+        player.setMetadata("Z_from", new FixedMetadataValue(Main.plugin, obj.get("Z_from")));
+        player.setMetadata("registered", new FixedMetadataValue(Main.plugin, true));
+    }
+
     public static boolean isDataExist(UUID uuid) {
         return dbPlot.isFindByUUIDExist(uuid);
     }
 
     public static boolean isSysDataExist() {
-        return dbPlot.isFindByIDStringExist(0);
+        return dbPlot.isFindByIDExist(0);
     }
 
     public static void createPlayerData(UUID uuid, double nextX, double nextZ) {

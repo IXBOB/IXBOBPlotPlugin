@@ -64,6 +64,7 @@ public class CommandPlot implements CommandExecutor {
                 Utils.updateDBSysObj(object);
 
                 //player
+                Utils.playerInitEntityData(player);
                 player.teleport(new Location(Bukkit.getWorlds().get(0), tpX, 52, tpZ));
                 player.sendTitle(LangLoader.get("plot_welcome_back_title"),
                         String.format(LangLoader.get("plot_owner_subtitle"), player.getName()), 10, 60, 10);

@@ -75,7 +75,7 @@ public class MongoDB {
         return found != null;
     }
 
-    public boolean isFindByIDStringExist (int id) {
+    public boolean isFindByIDExist (int id) {
         DBObject r = new BasicDBObject("id", id);
         DBObject found = collection.findOne(r);
         return found != null;

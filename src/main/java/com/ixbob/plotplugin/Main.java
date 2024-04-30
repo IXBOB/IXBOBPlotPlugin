@@ -4,7 +4,6 @@ import com.ixbob.plotplugin.command.CommandPlot;
 import com.ixbob.plotplugin.event.*;
 import com.ixbob.plotplugin.handler.config.LangLoader;
 import com.ixbob.plotplugin.util.Utils;
-import com.mongodb.Mongo;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -43,8 +42,8 @@ public class Main extends JavaPlugin {
         Listener onEntitySpawnListener = new OnEntitySpawnEvent();
         getServer().getPluginManager().registerEvents(onEntitySpawnListener, this);
 
-        Listener onPortalCreateListener = new OnPortalCreateEvent();
-        getServer().getPluginManager().registerEvents(onPortalCreateListener, this);
+        Listener onInportalListener = new PlayerPortalEvent();
+        getServer().getPluginManager().registerEvents(onInportalListener, this);
 
         Listener onRedstoneModifyListener = new OnRedstoneModifyEvent();
         getServer().getPluginManager().registerEvents(onRedstoneModifyListener, this);

@@ -16,8 +16,8 @@ public class OnPlayerBreakBlockEvent implements Listener {
             double breakBlockZ = event.getBlock().getLocation().getBlockZ();
             double plotXFrom = player.getMetadata("X_from").get(0).asDouble();
             double plotZFrom = player.getMetadata("Z_from").get(0).asDouble();
-            if (!(plotXFrom - 100 <= breakBlockX && breakBlockX <= plotXFrom
-                    && plotZFrom - 100 <= breakBlockZ && breakBlockZ <= plotZFrom)) {
+            if (!(plotXFrom - 100 <= breakBlockX && breakBlockX <= plotXFrom - 1
+                    && plotZFrom - 100 <= breakBlockZ && breakBlockZ <= plotZFrom - 1)) {
                 event.setCancelled(true);
             }
         }

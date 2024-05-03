@@ -24,8 +24,8 @@ public class OnPlayerPlaceBlockEvent implements Listener {
             double placeBlockZ = event.getBlock().getLocation().getBlockZ();
             double plotXFrom = player.getMetadata("X_from").get(0).asDouble();
             double plotZFrom = player.getMetadata("Z_from").get(0).asDouble();
-            if (!(plotXFrom - 100 <= placeBlockX && placeBlockX <= plotXFrom
-                    && plotZFrom - 100 <= placeBlockZ && placeBlockZ <= plotZFrom)) {
+            if (!(plotXFrom - 100 <= placeBlockX && placeBlockX <= plotXFrom - 1
+                    && plotZFrom - 100 <= placeBlockZ && placeBlockZ <= plotZFrom - 1)) {
                 event.setCancelled(true);
             }
         }

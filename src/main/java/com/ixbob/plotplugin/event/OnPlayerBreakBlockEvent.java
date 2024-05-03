@@ -1,5 +1,7 @@
 package com.ixbob.plotplugin.event;
 
+import com.ixbob.plotplugin.util.Utils;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -12,12 +14,8 @@ public class OnPlayerBreakBlockEvent implements Listener {
         if (!player.getMetadata("registered").get(0).asBoolean()) {
             event.setCancelled(true);
         } else {
-            double breakBlockX = event.getBlock().getLocation().getBlockX();
-            double breakBlockZ = event.getBlock().getLocation().getBlockZ();
-            double plotXFrom = player.getMetadata("X_from").get(0).asDouble();
-            double plotZFrom = player.getMetadata("Z_from").get(0).asDouble();
-            if (!(plotXFrom - 100 <= breakBlockX && breakBlockX <= plotXFrom - 1
-                    && plotZFrom - 100 <= breakBlockZ && breakBlockZ <= plotZFrom - 1)) {
+            Block block = event.getBlock();
+            if (!Utils.isBlockInSelfPlot(block, player)) {
                 event.setCancelled(true);
             }
         }

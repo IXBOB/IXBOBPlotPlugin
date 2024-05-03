@@ -4,14 +4,13 @@ import com.ixbob.plotplugin.Main;
 import com.ixbob.plotplugin.MongoDB;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
-import com.mongodb.Mongo;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.metadata.FixedMetadataValue;
 
-import java.util.Locale;
 import java.util.UUID;
 
 public class Utils {
@@ -95,5 +94,14 @@ public class Utils {
 
     public static void updateDBSysObj(DBObject object) {
         dbPlot.updateSys(object);
+    }
+
+    public static boolean isBlockInSelfPlot(Block block, Player player) {
+        double breakBlockX = block.getLocation().getBlockX();
+        double breakBlockZ = block.getLocation().getBlockZ();
+        double plotXFrom = player.getMetadata("X_from").get(0).asDouble();
+        double plotZFrom = player.getMetadata("Z_from").get(0).asDouble();
+        return (plotXFrom - 100 <= breakBlockX && breakBlockX <= plotXFrom - 1
+                && plotZFrom - 100 <= breakBlockZ && breakBlockZ <= plotZFrom - 1);
     }
 }

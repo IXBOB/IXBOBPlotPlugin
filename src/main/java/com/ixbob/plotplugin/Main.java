@@ -50,5 +50,9 @@ public class Main extends JavaPlugin {
 
         Listener pistonListener = new PistonEvent();
         getServer().getPluginManager().registerEvents(pistonListener, this);
+
+        Listener blockSpreadListener = new BlockSpreadEvent();
+        getServer().getPluginManager().registerEvents(blockSpreadListener, this);
+
     }
 }

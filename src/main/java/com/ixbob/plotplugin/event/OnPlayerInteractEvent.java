@@ -1,7 +1,12 @@
 package com.ixbob.plotplugin.event;
 
+import com.ixbob.plotplugin.Main;
+import com.ixbob.plotplugin.util.Utils;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -15,12 +20,11 @@ public class OnPlayerInteractEvent implements Listener {
         ItemStack item = event.getItem();
         EquipmentSlot hand = event.getHand();
         Action action = event.getAction();
+        Player player = event.getPlayer();
         if (item != null) {
             Material itemType = item.getType();
             if (itemType == Material.MONSTER_EGG
                     || itemType == Material.ARMOR_STAND
-                    || itemType == Material.WATER_BUCKET
-                    || itemType == Material.LAVA_BUCKET
                     || itemType == Material.TNT
                     || itemType == Material.EXPLOSIVE_MINECART
                     || itemType == Material.COMMAND_MINECART
@@ -28,7 +32,9 @@ public class OnPlayerInteractEvent implements Listener {
                     || itemType == Material.STORAGE_MINECART
                     || itemType == Material.END_CRYSTAL
                     || itemType == Material.POWERED_MINECART
-                    || itemType == Material.MINECART) {
+                    || itemType == Material.MINECART
+                    || itemType == Material.EGG
+                    || itemType == Material.SNOW_BALL) {
                 event.setCancelled(true);
             }
         }
@@ -40,6 +46,14 @@ public class OnPlayerInteractEvent implements Listener {
                     || blockType == Material.WOOD_BUTTON
                     || blockType == Material.LEVER)) {
                 event.setCancelled(true);
+            }
+            if (!Utils.isBlockInSelfPlot(clickedBlock, player)) {
+                Block targetBlock = player.getTargetBlock(null, 6);
+                if (targetBlock.getType() == Material.FIRE) {
+                    System.out.println(12);
+                    Location loc = new Location(targetBlock.getWorld(), targetBlock.getX(), targetBlock.getY(), targetBlock.getZ());
+                    Bukkit.getServer().getScheduler().runTask(Main.plugin, () -> targetBlock.getWorld().getBlockAt(loc).setType(Material.FIRE));
+                }
             }
         }
     }

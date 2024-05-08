@@ -64,15 +64,15 @@ public class CommandPlot implements CommandExecutor {
                 Utils.updateDBSysObj(object);
 
                 //player
-                Utils.playerInitEntityData(player);
                 player.teleport(new Location(Bukkit.getWorlds().get(0), tpX, 52, tpZ));
                 player.sendTitle(LangLoader.get("plot_welcome_back_title"),
                         String.format(LangLoader.get("plot_owner_subtitle"), player.getName()), 10, 60, 10);
             }
 
+            Utils.playerInitEntityData(player);
             DBObject playerData = Utils.getPlayerData(uuid);
-            double x = ((Integer) playerData.get("X_from")).doubleValue() - 50;
-            double z = ((Integer) playerData.get("Z_from")).doubleValue() - 50;
+            double x = (double) playerData.get("X_from") - 50;
+            double z = (double) playerData.get("Z_from") - 50;
             player.teleport(new Location(Bukkit.getWorlds().get(0), x, 52, z));
             player.sendTitle(LangLoader.get("plot_welcome_back_title"),
                     String.format(String.format(LangLoader.get("plot_owner_subtitle"), player.getName())), 10, 60, 10);

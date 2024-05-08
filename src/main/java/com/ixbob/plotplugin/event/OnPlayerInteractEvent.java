@@ -18,7 +18,6 @@ public class OnPlayerInteractEvent implements Listener {
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         ItemStack item = event.getItem();
-        EquipmentSlot hand = event.getHand();
         Action action = event.getAction();
         Player player = event.getPlayer();
         if (item != null) {
@@ -50,7 +49,6 @@ public class OnPlayerInteractEvent implements Listener {
             if (!Utils.isBlockInSelfPlot(clickedBlock, player)) {
                 Block targetBlock = player.getTargetBlock(null, 6);
                 if (targetBlock.getType() == Material.FIRE) {
-                    System.out.println(12);
                     Location loc = new Location(targetBlock.getWorld(), targetBlock.getX(), targetBlock.getY(), targetBlock.getZ());
                     Bukkit.getServer().getScheduler().runTask(Main.plugin, () -> targetBlock.getWorld().getBlockAt(loc).setType(Material.FIRE));
                 }

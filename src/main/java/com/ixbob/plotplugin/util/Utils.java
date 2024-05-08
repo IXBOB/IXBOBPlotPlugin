@@ -97,6 +97,9 @@ public class Utils {
     }
 
     public static boolean isBlockInSelfPlot(Block block, Player player) {
+        if (!player.getMetadata("registered").get(0).asBoolean()) {
+            return false;
+        }
         double breakBlockX = block.getLocation().getBlockX();
         double breakBlockZ = block.getLocation().getBlockZ();
         double plotXFrom = player.getMetadata("X_from").get(0).asDouble();

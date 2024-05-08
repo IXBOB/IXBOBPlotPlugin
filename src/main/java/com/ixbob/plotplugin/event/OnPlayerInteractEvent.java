@@ -58,6 +58,12 @@ public class OnPlayerInteractEvent implements Listener {
                     Bukkit.getServer().getScheduler().runTask(Main.plugin, () -> targetBlock.getWorld().getBlockAt(loc).setType(Material.FIRE));
                 }
                 if (targetType == Material.CHEST
+                        || targetType == Material.FENCE_GATE
+                        || targetType == Material.ACACIA_FENCE_GATE
+                        || targetType == Material.BIRCH_FENCE_GATE
+                        || targetType == Material.JUNGLE_FENCE_GATE
+                        || targetType == Material.SPRUCE_FENCE_GATE
+                        || targetType == Material.DARK_OAK_FENCE_GATE
                         || targetType == Material.BLACK_SHULKER_BOX
                         || targetType == Material.YELLOW_SHULKER_BOX
                         || targetType == Material.SILVER_SHULKER_BOX

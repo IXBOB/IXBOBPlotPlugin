@@ -33,7 +33,11 @@ public class OnPlayerInteractEvent implements Listener {
                     || itemType == Material.POWERED_MINECART
                     || itemType == Material.MINECART
                     || itemType == Material.EGG
-                    || itemType == Material.SNOW_BALL) {
+                    || itemType == Material.SNOW_BALL
+                    || itemType == Material.EYE_OF_ENDER
+                    || itemType == Material.ENDER_PEARL
+                    || itemType == Material.LINGERING_POTION
+                    || itemType == Material.SPLASH_POTION) {
                 event.setCancelled(true);
             }
         }
@@ -48,9 +52,29 @@ public class OnPlayerInteractEvent implements Listener {
             }
             if (!Utils.isBlockInSelfPlot(clickedBlock, player)) {
                 Block targetBlock = player.getTargetBlock(null, 6);
-                if (targetBlock.getType() == Material.FIRE) {
+                Material targetType = targetBlock.getType();
+                if (targetType == Material.FIRE) {
                     Location loc = new Location(targetBlock.getWorld(), targetBlock.getX(), targetBlock.getY(), targetBlock.getZ());
                     Bukkit.getServer().getScheduler().runTask(Main.plugin, () -> targetBlock.getWorld().getBlockAt(loc).setType(Material.FIRE));
+                }
+                if (targetType == Material.CHEST
+                        || targetType == Material.BLACK_SHULKER_BOX
+                        || targetType == Material.YELLOW_SHULKER_BOX
+                        || targetType == Material.SILVER_SHULKER_BOX
+                        || targetType == Material.BLUE_SHULKER_BOX
+                        || targetType == Material.CYAN_SHULKER_BOX
+                        || targetType == Material.GRAY_SHULKER_BOX
+                        || targetType == Material.LIME_SHULKER_BOX
+                        || targetType == Material.GREEN_SHULKER_BOX
+                        || targetType == Material.LIGHT_BLUE_SHULKER_BOX
+                        || targetType == Material.BROWN_SHULKER_BOX
+                        || targetType == Material.WHITE_SHULKER_BOX
+                        || targetType == Material.RED_SHULKER_BOX
+                        || targetType == Material.PURPLE_SHULKER_BOX
+                        || targetType == Material.PINK_SHULKER_BOX
+                        || targetType == Material.ORANGE_SHULKER_BOX
+                        || targetType == Material.MAGENTA_SHULKER_BOX) {
+                    event.setCancelled(true);
                 }
             }
         }

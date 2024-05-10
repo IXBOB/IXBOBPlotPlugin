@@ -10,19 +10,59 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 public class OnPlayerInteractEvent implements Listener {
     @EventHandler
+    public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
+        if (event.getDamager() instanceof Player) {
+            Player player = (Player) event.getDamager();
+            Location entityLoc = event.getEntity().getLocation();
+            double x = entityLoc.getX();
+            double z = entityLoc.getZ();
+            if (!Utils.isPosXZInSelfPlot(x, z, player)) {
+                event.setCancelled(true);
+            }
+        }
+    }
+    @EventHandler
+    public void onPlayerDropHangingEntity(HangingBreakByEntityEvent event) {
+        if (event.getRemover() instanceof Player) {
+            Player player = (Player) event.getRemover();
+            Location entityLoc = event.getEntity().getLocation();
+            double x = entityLoc.getX();
+            double z = entityLoc.getZ();
+            if (!Utils.isPosXZInSelfPlot(x, z, player)) {
+                event.setCancelled(true);
+            }
+        }
+    }
+    @EventHandler
+    public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+        Player player = event.getPlayer();
+        Location entityLoc = event.getRightClicked().getLocation();
+        double x = entityLoc.getX();
+        double z = entityLoc.getZ();
+        if (!Utils.isPosXZInSelfPlot(x, z, player)) {
+            event.setCancelled(true);
+        }
+    }
+    @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
         ItemStack item = event.getItem();
         Action action = event.getAction();
         Player player = event.getPlayer();
+        Block clickedBlock = event.getClickedBlock();
         if (item != null) {
             Material itemType = item.getType();
             if (itemType == Material.MONSTER_EGG
+                    || itemType == Material.FIREWORK
+                    || itemType == Material.PAINTING
                     || itemType == Material.ARMOR_STAND
                     || itemType == Material.TNT
                     || itemType == Material.EXPLOSIVE_MINECART
@@ -37,51 +77,27 @@ public class OnPlayerInteractEvent implements Listener {
                     || itemType == Material.EYE_OF_ENDER
                     || itemType == Material.ENDER_PEARL
                     || itemType == Material.LINGERING_POTION
-                    || itemType == Material.SPLASH_POTION) {
+                    || itemType == Material.SPLASH_POTION
+                    || itemType == Material.BOAT
+                    || itemType == Material.BOAT_ACACIA
+                    || itemType == Material.BOAT_BIRCH
+                    || itemType == Material.BOAT_SPRUCE
+                    || itemType == Material.BOAT_DARK_OAK
+                    || itemType == Material.BOAT_JUNGLE) {
                 event.setCancelled(true);
             }
         }
-        Block clickedBlock = event.getClickedBlock();
         if (clickedBlock != null) {
             Material blockType = clickedBlock.getType();
             if (action == Action.RIGHT_CLICK_BLOCK
                     &&(blockType == Material.STONE_BUTTON
                     || blockType == Material.WOOD_BUTTON
-                    || blockType == Material.LEVER)) {
+                    || blockType == Material.LEVER
+                    || blockType == Material.DRAGON_EGG)) {
                 event.setCancelled(true);
             }
             if (!Utils.isBlockInSelfPlot(clickedBlock, player)) {
-                Block targetBlock = player.getTargetBlock(null, 6);
-                Material targetType = targetBlock.getType();
-                if (targetType == Material.FIRE) {
-                    Location loc = new Location(targetBlock.getWorld(), targetBlock.getX(), targetBlock.getY(), targetBlock.getZ());
-                    Bukkit.getServer().getScheduler().runTask(Main.plugin, () -> targetBlock.getWorld().getBlockAt(loc).setType(Material.FIRE));
-                }
-                if (targetType == Material.CHEST
-                        || targetType == Material.FENCE_GATE
-                        || targetType == Material.ACACIA_FENCE_GATE
-                        || targetType == Material.BIRCH_FENCE_GATE
-                        || targetType == Material.JUNGLE_FENCE_GATE
-                        || targetType == Material.SPRUCE_FENCE_GATE
-                        || targetType == Material.DARK_OAK_FENCE_GATE
-                        || targetType == Material.BLACK_SHULKER_BOX
-                        || targetType == Material.YELLOW_SHULKER_BOX
-                        || targetType == Material.SILVER_SHULKER_BOX
-                        || targetType == Material.BLUE_SHULKER_BOX
-                        || targetType == Material.CYAN_SHULKER_BOX
-                        || targetType == Material.GRAY_SHULKER_BOX
-                        || targetType == Material.LIME_SHULKER_BOX
-                        || targetType == Material.GREEN_SHULKER_BOX
-                        || targetType == Material.LIGHT_BLUE_SHULKER_BOX
-                        || targetType == Material.BROWN_SHULKER_BOX
-                        || targetType == Material.WHITE_SHULKER_BOX
-                        || targetType == Material.RED_SHULKER_BOX
-                        || targetType == Material.PURPLE_SHULKER_BOX
-                        || targetType == Material.PINK_SHULKER_BOX
-                        || targetType == Material.ORANGE_SHULKER_BOX
-                        || targetType == Material.MAGENTA_SHULKER_BOX) {
-                    event.setCancelled(true);
-                }
+                event.setCancelled(true);
             }
         }
     }

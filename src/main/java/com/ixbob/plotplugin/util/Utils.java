@@ -107,4 +107,14 @@ public class Utils {
         return (plotXFrom - 100 <= breakBlockX && breakBlockX <= plotXFrom - 1
                 && plotZFrom - 100 <= breakBlockZ && breakBlockZ <= plotZFrom - 1);
     }
+
+    public static boolean isPosXZInSelfPlot(double x, double z, Player player) {
+        if (!player.getMetadata("registered").get(0).asBoolean()) {
+            return false;
+        }
+        double plotXFrom = player.getMetadata("X_from").get(0).asDouble();
+        double plotZFrom = player.getMetadata("Z_from").get(0).asDouble();
+        return (plotXFrom - 100 <= x && x <= plotXFrom - 1
+                && plotZFrom - 100 <= z && z <= plotZFrom - 1);
+    }
 }

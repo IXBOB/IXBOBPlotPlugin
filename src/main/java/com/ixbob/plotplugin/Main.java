@@ -4,6 +4,7 @@ import com.ixbob.plotplugin.command.CommandPlot;
 import com.ixbob.plotplugin.event.*;
 import com.ixbob.plotplugin.handler.config.LangLoader;
 import com.ixbob.plotplugin.util.Utils;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;

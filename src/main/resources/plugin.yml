@@ -10,3 +10,6 @@ commands:
   plot:
     description: get or teleport to your own plot.
     usage: /<command>
+  spawn:
+    description: return to the spawn point.
+    usage: /<command>

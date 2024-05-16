@@ -1,16 +1,19 @@
 package com.ixbob.plotplugin;
 
 import com.ixbob.plotplugin.command.CommandPlot;
+import com.ixbob.plotplugin.command.CommandSpawn;
 import com.ixbob.plotplugin.event.*;
 import com.ixbob.plotplugin.handler.config.LangLoader;
 import com.ixbob.plotplugin.util.Utils;
-import org.bukkit.event.EventHandler;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
     public static Plugin plugin;
+    public static Location spawnLocation;
     @Override
     public void onEnable() {
         plugin = this;
@@ -23,7 +26,10 @@ public class Main extends JavaPlugin {
             Utils.firstInitDB();
         }
 
+        spawnLocation  = new Location(Bukkit.getWorlds().get(0), 0 ,52, 0);
+
         this.getCommand("plot").setExecutor(new CommandPlot());
+        this.getCommand("spawn").setExecutor(new CommandSpawn());
 
         Listener onPlayerBreakBlockListener = new OnPlayerBreakBlockEvent();
         getServer().getPluginManager().registerEvents(onPlayerBreakBlockListener, this);

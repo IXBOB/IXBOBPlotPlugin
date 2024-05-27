@@ -13,3 +13,6 @@ commands:
   spawn:
     description: return to the spawn point.
     usage: /<command>
+  menu:
+    description: open the plot menu.
+    usage: /<command>

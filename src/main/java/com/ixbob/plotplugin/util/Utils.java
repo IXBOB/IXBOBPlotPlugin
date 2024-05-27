@@ -68,6 +68,10 @@ public class Utils {
         return dbPlot.findByOwnerUUID(uuid);
     }
 
+    public static DBObject getPlayerData(int id) {
+        return dbPlot.findByID(id);
+    }
+
     public static DBObject getSysData() {
         return dbPlot.findByID(0);
     }
@@ -116,5 +120,9 @@ public class Utils {
         double plotZFrom = player.getMetadata("Z_from").get(0).asDouble();
         return (plotXFrom - 100 <= x && x <= plotXFrom - 1
                 && plotZFrom - 100 <= z && z <= plotZFrom - 1);
+    }
+
+    public static int getInventoryIndex(int row, int column) {
+        return row * 9 - 1 - (9 - column);
     }
 }

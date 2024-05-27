@@ -1,3 +1,17 @@
 plot_welcome_back_title: "§a§l欢迎回到您的地皮"
 plot_owner_subtitle: "§7拥有者: %s"
 plot_other_title: "§a§l地皮"
+
+menu_main_title: "菜单"
+
+menu_main_button_open_best_plots_name: "§a最佳地皮"
+menu_main_button_open_best_plots_lore1: "§r§7这里汇集了地皮服务器的所有精选建筑"
+menu_main_button_open_best_plots_lore2: ""
+menu_main_button_open_best_plots_lore3: "§r§b左键打开！"
+
+menu_bestplots_default_button_name: "§a地皮拥有者: %s"
+menu_bestplots_default_button_lore1: "§bX: %PlotPosX%, Z: %PlotPosZ%"
+menu_bestplots_default_button_lore2: "§7ID: %PlotId%"
+menu_bestplots_default_button_lore3: "§e§l左键前往！"
+
+bestplots_teleport_success_message: "§a传送成功！ 您来到了地皮 ID: §b%s§a, 拥有者: §b%s§r"

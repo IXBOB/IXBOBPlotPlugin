@@ -78,8 +78,15 @@ public class Main extends JavaPlugin {
         Listener playerCloseGUIListener = new OnPlayerCloseGUIListener();
         getServer().getPluginManager().registerEvents(playerCloseGUIListener, this);
 
-        Listener OnPlayerClickGUIListener = new OnPlayerClickGUIListener();
-        getServer().getPluginManager().registerEvents(OnPlayerClickGUIListener, this);
+        Listener onPlayerClickGUIListener = new OnPlayerClickGUIListener();
+        getServer().getPluginManager().registerEvents(onPlayerClickGUIListener, this);
+
+        Listener onEntityChangeBlockListener = new OnEntityChangeBlockEvent();
+        getServer().getPluginManager().registerEvents(onEntityChangeBlockListener, this);
+
+        Listener onEntityShootBowListener = new OnEntityShootBowEvent();
+        getServer().getPluginManager().registerEvents(onEntityShootBowListener, this);
+
     }
 
     public static PlayerGUIManager getGUIManager() {

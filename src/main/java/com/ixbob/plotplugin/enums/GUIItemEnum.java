@@ -11,20 +11,29 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum GUIItemEnum {
-    MAIN_OPEN_BEST_PLOTS(Material.DIAMOND, 1, Utils.getInventoryIndex(2, 2),
+    MAIN_OPEN_BEST_PLOTS(Material.DIAMOND, (short) 0, 1, Utils.getInventoryIndex(2, 2),
             LangLoader.get("menu_main_button_open_best_plots_name"), new ArrayList<>(Arrays.asList(
                     LangLoader.get("menu_main_button_open_best_plots_lore1"),
                     LangLoader.get("menu_main_button_open_best_plots_lore2"),
-                    LangLoader.get("menu_main_button_open_best_plots_lore3"))));
+                    LangLoader.get("menu_main_button_open_best_plots_lore3")))),
+    MAIN_BACK_OWN_PLOT(Material.MAGENTA_GLAZED_TERRACOTTA, (short) 0, 1, Utils.getInventoryIndex(2, 5),
+            LangLoader.get("menu_main_button_back_own_plot_name"), new ArrayList<>(Arrays.asList(
+                    LangLoader.get("menu_main_button_back_own_plot_lore1"),
+                    LangLoader.get("menu_main_button_back_own_plot_lore2"),
+                    LangLoader.get("menu_main_button_back_own_plot_lore3"),
+                    LangLoader.get("menu_main_button_back_own_plot_lore4"),
+                    LangLoader.get("menu_main_button_back_own_plot_lore5"))));
 
     private final Material material;
+    private final short dataValue;
     private final int amount;
     private final int index;
     private final String displayName;
     private final List<String> loreList;
 
-    GUIItemEnum(Material material, int amount, int index, String displayName, List<String> loreList) {
+    GUIItemEnum(Material material, short dataValue, int amount, int index, String displayName, List<String> loreList) {
         this.material = material;
+        this.dataValue = dataValue;
         this.amount = amount;
         this.index = index;
         this.displayName = displayName;

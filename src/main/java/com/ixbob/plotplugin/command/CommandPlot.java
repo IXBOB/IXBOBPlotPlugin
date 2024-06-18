@@ -76,6 +76,7 @@ public class CommandPlot implements CommandExecutor {
             player.teleport(new Location(Bukkit.getWorlds().get(0), x, 52, z));
             player.sendTitle(LangLoader.get("plot_welcome_back_title"),
                     String.format(String.format(LangLoader.get("plot_owner_subtitle"), player.getName())), 10, 60, 10);
+            player.sendMessage(LangLoader.get("own_plot_teleport_success_message"));
         }
         return true;
     }

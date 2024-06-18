@@ -83,16 +83,16 @@ public class Utils {
 
     public static void genPlotFunc(Location location) {
         for (int i = 0; i <= 100; i++) {
-            location.add(-1 ,0 ,0).getBlock().setType(Material.STONE_SLAB2);
+            location.add(-1 ,0 ,0).getBlock().setType(Material.ACACIA_SLAB);
         }
         for (int i = 0; i <= 100; i++) {
-            location.add(0 ,0 ,-1).getBlock().setType(Material.STONE_SLAB2);
+            location.add(0 ,0 ,-1).getBlock().setType(Material.ACACIA_SLAB);
         }
         for (int i = 0; i <= 100; i++) {
-            location.add(1 ,0 ,0).getBlock().setType(Material.STONE_SLAB2);
+            location.add(1 ,0 ,0).getBlock().setType(Material.ACACIA_SLAB);
         }
         for (int i = 0; i <= 100; i++) {
-            location.add(0 ,0 ,1).getBlock().setType(Material.STONE_SLAB2);
+            location.add(0 ,0 ,1).getBlock().setType(Material.ACACIA_SLAB);
         }
     }
 

@@ -3,6 +3,7 @@ package com.ixbob.plotplugin;
 import com.ixbob.plotplugin.command.CommandMenu;
 import com.ixbob.plotplugin.command.CommandPlot;
 import com.ixbob.plotplugin.command.CommandSpawn;
+import com.ixbob.plotplugin.command.CommandTest;
 import com.ixbob.plotplugin.event.*;
 import com.ixbob.plotplugin.handler.config.LangLoader;
 import com.ixbob.plotplugin.util.Utils;
@@ -41,6 +42,7 @@ public class Main extends JavaPlugin {
         config = getConfig();
         bestPlotsList = config.getIntegerList("menu.best_plots");
 
+        this.getCommand("test").setExecutor(new CommandTest());
         this.getCommand("plot").setExecutor(new CommandPlot());
         this.getCommand("spawn").setExecutor(new CommandSpawn());
         this.getCommand("menu").setExecutor(new CommandMenu());

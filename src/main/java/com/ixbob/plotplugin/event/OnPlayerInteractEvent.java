@@ -60,30 +60,30 @@ public class OnPlayerInteractEvent implements Listener {
         Block clickedBlock = event.getClickedBlock();
         if (item != null) {
             Material itemType = item.getType();
-            if (itemType == Material.MONSTER_EGG
-                    || itemType == Material.FIREWORK
+            if (itemType == Material.LEGACY_MOB_SPAWNER
+                    || itemType == Material.FIREWORK_ROCKET
                     || itemType == Material.PAINTING
                     || itemType == Material.ARMOR_STAND
                     || itemType == Material.TNT
-                    || itemType == Material.EXPLOSIVE_MINECART
-                    || itemType == Material.COMMAND_MINECART
+                    || itemType == Material.TNT_MINECART
+                    || itemType == Material.COMMAND_BLOCK_MINECART
                     || itemType == Material.HOPPER_MINECART
-                    || itemType == Material.STORAGE_MINECART
+                    || itemType == Material.CHEST_MINECART
                     || itemType == Material.END_CRYSTAL
-                    || itemType == Material.POWERED_MINECART
+                    || itemType == Material.FURNACE_MINECART
                     || itemType == Material.MINECART
                     || itemType == Material.EGG
-                    || itemType == Material.SNOW_BALL
-                    || itemType == Material.EYE_OF_ENDER
+                    || itemType == Material.SNOWBALL
+                    || itemType == Material.ENDER_EYE
                     || itemType == Material.ENDER_PEARL
                     || itemType == Material.LINGERING_POTION
                     || itemType == Material.SPLASH_POTION
-                    || itemType == Material.BOAT
-                    || itemType == Material.BOAT_ACACIA
-                    || itemType == Material.BOAT_BIRCH
-                    || itemType == Material.BOAT_SPRUCE
-                    || itemType == Material.BOAT_DARK_OAK
-                    || itemType == Material.BOAT_JUNGLE) {
+                    || itemType == Material.ACACIA_BOAT
+                    || itemType == Material.BIRCH_BOAT
+                    || itemType == Material.DARK_OAK_BOAT
+                    || itemType == Material.JUNGLE_BOAT
+                    || itemType == Material.SPRUCE_BOAT
+                    || itemType == Material.OAK_BOAT) {
                 event.setCancelled(true);
             }
         }
@@ -91,7 +91,12 @@ public class OnPlayerInteractEvent implements Listener {
             Material blockType = clickedBlock.getType();
             if (action == Action.RIGHT_CLICK_BLOCK
                     &&(blockType == Material.STONE_BUTTON
-                    || blockType == Material.WOOD_BUTTON
+                    || blockType == Material.BIRCH_BUTTON
+                    || blockType == Material.DARK_OAK_BUTTON
+                    || blockType == Material.OAK_BUTTON
+                    || blockType == Material.ACACIA_BUTTON
+                    || blockType == Material.JUNGLE_BUTTON
+                    || blockType == Material.SPRUCE_BUTTON
                     || blockType == Material.LEVER
                     || blockType == Material.DRAGON_EGG)) {
                 event.setCancelled(true);

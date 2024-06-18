@@ -36,9 +36,13 @@ public class GUIMenuMain extends AbstractGUI {
         GUIGridTypeEnum type = getGridType(index, clickType);
         if (type == GUIGridTypeEnum.LEFT_BUTTON) {
             //打开最佳地皮菜单
-            if (index == Utils.getInventoryIndex(2,2)) {
+            if (index == GUIItemEnum.MAIN_OPEN_BEST_PLOTS.getIndex()) {
                 player.closeInventory();
                 Main.getGUIManager().openBestPlotsGUI(player);
+            }
+            else if (index == GUIItemEnum.MAIN_BACK_OWN_PLOT.getIndex()) {
+                player.closeInventory();
+                player.performCommand("plot");
             }
         }
     }
@@ -49,5 +53,7 @@ public class GUIMenuMain extends AbstractGUI {
 
         inventory.setItem(GUIItemEnum.MAIN_OPEN_BEST_PLOTS.getIndex(), GUIItemEnum.MAIN_OPEN_BEST_PLOTS.getNamedItem());
         leftButton.add(GUIItemEnum.MAIN_OPEN_BEST_PLOTS.getIndex());
+        inventory.setItem(GUIItemEnum.MAIN_BACK_OWN_PLOT.getIndex(), GUIItemEnum.MAIN_BACK_OWN_PLOT.getNamedItem());
+        leftButton.add(GUIItemEnum.MAIN_BACK_OWN_PLOT.getIndex());
     }
 }

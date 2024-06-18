@@ -46,7 +46,7 @@ public class GUIBestPlots extends AbstractGUI {
         if (type == GUIGridTypeEnum.LEFT_BUTTON) {
             int listIndex = index - 10;
             player.teleport(locationList.get(listIndex));
-            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_HARP, 1, 1);
+            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 1, 1);
             player.sendMessage(String.format(LangLoader.get("bestplots_teleport_success_message"), idList.get(listIndex), authorNameList.get(listIndex)));
             player.closeInventory();
         }
@@ -74,7 +74,7 @@ public class GUIBestPlots extends AbstractGUI {
             itemLoreList.replaceAll(s -> s.replace("%PlotPosX%", String.valueOf(location.getX()))
                     .replace("%PlotPosZ%", String.valueOf(location.getZ()))
                     .replace("%PlotId%", String.valueOf(id)));
-            ItemStack clickItem = new ItemStack(Material.SKULL_ITEM, 1);
+            ItemStack clickItem = new ItemStack(Material.PLAYER_HEAD, 1);
             ItemMeta itemMeta = clickItem.getItemMeta();
             itemMeta.setDisplayName(itemName);
             itemMeta.setLore(itemLoreList);
